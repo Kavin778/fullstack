@@ -1,10 +1,10 @@
 import React from 'react';
+import Layout from '../components/Layout';
+import UserLayout from '../components/UserLayout';
 
 const Userhome = () => {
   return (
-    <h1 className="font-sans font-bold text-indigo-800 text-center">
-      UserHome
-    </h1>
+    <UserLayout/>
   );
 };
 

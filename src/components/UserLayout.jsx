@@ -1,9 +1,9 @@
 // Layout.jsx
 import React, { useState } from 'react';
-import Sidebar from './sidenavbar';
 import VenueForm from './VenueForm'; // Import the VenueForm component
+import UserSidebar from './UserSideBar';
 
-const Layout = ({ children }) => {
+const UserLayout = ({ children }) => {
   const [isFormOpen, setIsFormOpen] = useState(false); // State to control form visibility
 
   const openForm = () => {
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="flex h-screen ">
-      <Sidebar />
+      <UserSidebar/>
       <main className="flex-1 overflow-auto sm:ml-72 lg:ml-72 bg-slate-200">
         <div className="max-w-24 md:w-24 lg:w-24 m-auto mt-4">
           <img className="object-contain" src="src/images/BIT LOGO.png" alt="BIT Logo" />
@@ -71,4 +71,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default UserLayout;
