@@ -14,7 +14,7 @@ const Adminloginpage = () => {
                 src="src\images\BIT LOGO.png"
               />
             </div>
-            <h2 class="lg:text-5xlfont-sans text-indigo-800  text-4xl font-extrabold lg:leading-[55px] text-center">
+            <h2 class="lg:text-5xl font-sans text-indigo-800  text-4xl font-extrabold lg:leading-[55px] text-center">
               BIT-LOGIN
             </h2>
             <p class="text-lg text-indigo-800 text-center font-sans font-semibold mt-2">
