@@ -4,7 +4,7 @@ import VenueForm from './VenueForm'; // Import the VenueForm component
 import UserSidebar from './UserSideBar';
 import Userprofile from './Userprofile';
 
-const UserLayout = ({ children }) => {
+const UserLayout = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const UserLayout = ({ children }) => {
   return (
     <div className="flex h-screen ">
       <UserSidebar/>
-      <main className="flex-1 overflow-auto sm:ml-72 lg:ml-72 bg-slate-200">
+      <main className="flex-1 overflow-auto sm:ml-72 lg:ml-72 bg-white">
         <div className="max-w-24 md:w-24 lg:w-24 m-auto mt-4">
           <img className="object-contain" src="src/images/BIT LOGO.png" alt="BIT Logo" />
         </div>
@@ -39,28 +39,30 @@ const UserLayout = ({ children }) => {
             RESOURCE BOOKING PORTAL
           </h2>
         </div>
-        <div className="flex flex-col h-auto w-[95%] m-auto mb-1 md:flex-row p-2 md:gap-8 sm:gap-4">
-          <div className="w-full rounded-lg shadow-lg md:w-1/2 h-48 mb-4 text-center hover:bg-slate-50 hover:shadow-xl bg-slate-100 flex flex-col justify-center items-center">
+          <div className="flex flex-col h-auto w-[95%] m-auto mb-1 md:flex-row p-2 md:gap-8 sm:gap-4">
+          <div className="group w-full rounded-lg shadow-lg hover:shadow-indigo-900 md:w-1/2 h-48 mb-4 text-center hover:bg-indigo-800 hover:text-white hover:shadow-xl bg-white flex flex-col justify-center items-center">
             <h2 className="m-8 lg:text-2xl md:text-xl sm:text-lg font-semibold">Book Venue</h2>
             <button
-              className="bg-indigo-900 text-white hover:bg-indigo-800 md:w-20 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
+              className="bg-indigo-800 text-white group-hover:bg-white group-hover:text-indigo-800 md:w-20 md:text-sm lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
               onClick={openForm}
             >
               Form
             </button>
           </div>
-          <div className="w-full rounded-lg shadow-lg md:w-1/2 h-48 mb-4 text-center hover:bg-slate-50 hover:shadow-xl bg-slate-100 flex flex-col justify-center items-center">
+          <div className="group w-full rounded-lg shadow-lg hover:shadow-indigo-900 md:w-1/2 h-48 mb-4 text-center hover:bg-indigo-800 hover:text-white hover:shadow-xl bg-white flex flex-col justify-center items-center">
             <h2 className="m-8 lg:text-2xl md:text-xl sm:text-lg font-semibold">My Profile</h2>
             <button
-              className="bg-indigo-900 text-white hover:bg-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
-              onClick={openProfile}>
+              className="bg-indigo-800 text-white group-hover:bg-white group-hover:text-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
+              onClick={openProfile}
+            >
               View Profile
             </button>
           </div>
-          <div className="w-full rounded-lg shadow-lg md:w-1/2 h-48 mb-4 text-center hover:bg-slate-50 hover:shadow-xl bg-slate-100 flex flex-col justify-center items-center">
+          <div className="group w-full rounded-lg shadow-lg hover:shadow-indigo-900 md:w-1/2 h-48 mb-4 text-center hover:bg-indigo-800 hover:text-white hover:shadow-xl bg-white flex flex-col justify-center items-center">
             <h2 className="m-8 lg:text-2xl md:text-xl sm:text-lg font-semibold">My Bookings</h2>
             <button
-              className="bg-indigo-900 text-white hover:bg-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg">
+              className="bg-indigo-800 text-white group-hover:bg-white group-hover:text-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
+            >
               Bookings
             </button>
           </div>

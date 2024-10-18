@@ -5,6 +5,8 @@ import Adminloginpage from './pages/Adminloginpage';
 import Userloginpage from './pages/Userloginpage';
 import Adminhome from './pages/Adminhome';
 import Userhome from './pages/Userhome';
+import UserApprovedList from './pages/UserAprrovedList';
+import UserPendingList from './pages/UserPendingList';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/user" element={<Userloginpage />} />
           <Route path="/adminhome" element={<Adminhome />} />
           <Route path="/userhome" element={<Userhome />} />
+          <Route path="/user-approved-list" element={<UserApprovedList/>}/>
+          <Route path="/user-pending-list" element={<UserPendingList/>}/>
         </Routes>
       </Router>
     </div>

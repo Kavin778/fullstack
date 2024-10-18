@@ -1,8 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
+import { Link, useNavigate } from 'react-router-dom'; // Assuming you're using React Router for navigation
+import About from './About';
 
 function UserSidebar() {
   const [open, setOpen] = useState(false);
+  const [aboutopen, setAboutOpen] = useState(false);
+  const navigate = useNavigate();
+  const openAbout=()=>{
+    setAboutOpen(true);
+  }
+  const closeAbout=()=>{
+    setAboutOpen(false);
+  }
 
   return (
     <>
@@ -62,7 +71,7 @@ function UserSidebar() {
             <path d="m6 6 12 12" />
           </svg>
         </button>
-        <div className="h-full bg-white   py-4  px-3 overflow-y-auto">
+        <div className="h-full bg-white shadow-gray-500 shadow-lg py-4  px-3 overflow-y-auto">
           <div className="h-12 w-1/4  mx-24 ">
             <img className="object-contain" src="src\images\BIT LOGO.png"></img>
           </div>
@@ -74,7 +83,7 @@ function UserSidebar() {
           <hr className="border-indigo-900 border-t-2 w-full mb-4"></hr>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold text-lg items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white hover:bg-indigo-800 hover:text-white">
+              <button onClick={()=>navigate("/userhome")} className="flex mb-2 font-sans font-semibold text-lg items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -104,7 +113,7 @@ function UserSidebar() {
           </ul>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={()=>navigate("/user-approved-list")} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
                 <span className="ms-3">Approved Bookings</span>
               </button>
@@ -112,7 +121,7 @@ function UserSidebar() {
           </ul>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={()=>navigate("/user-pending-list")} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-arrow-down"><path d="M12.338 21.994A10 10 0 1 1 21.925 13.227"/><path d="M12 6v6l2 1"/><path d="m14 18 4 4 4-4"/><path d="M18 14v8"/></svg>
                 <span className="ms-3">Pending Bookings</span>
               </button>
@@ -120,7 +129,7 @@ function UserSidebar() {
           </ul>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={()=>navigate("/user")} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -143,7 +152,7 @@ function UserSidebar() {
           </ul>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={openAbout} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -166,6 +175,7 @@ function UserSidebar() {
           </ul>
         </div>
       </aside>
+      {aboutopen && <About isOpen={aboutopen} onClose={closeAbout}/>}
     </>
   );
 }
