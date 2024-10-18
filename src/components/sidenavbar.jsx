@@ -34,7 +34,6 @@ function Sidebar() {
           <line x1="4" x2="20" y1="18" y2="18" />
         </svg>
       </button>
-      {/* Sidebar */}
       <aside
         id="default-sidebar"
         className={`fixed top-0 left-0 z-40 w-72 h-screen transition-transform ${open ? '-translate-x-0' : '-translate-x-full'} sm:translate-x-0 bg-gray-50 dark:bg-gray-800`}

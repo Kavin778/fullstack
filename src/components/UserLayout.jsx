@@ -2,17 +2,27 @@
 import React, { useState } from 'react';
 import VenueForm from './VenueForm'; // Import the VenueForm component
 import UserSidebar from './UserSideBar';
+import Userprofile from './Userprofile';
 
 const UserLayout = ({ children }) => {
-  const [isFormOpen, setIsFormOpen] = useState(false); // State to control form visibility
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const openForm = () => {
-    setIsFormOpen(true);
+    setIsFormOpen(true);  
   };
 
   const closeForm = () => {
     setIsFormOpen(false);
   };
+
+  const openProfile = ()=>{
+    setIsProfileOpen(true);
+  }
+
+  const closeProfile =()=>{
+    setIsProfileOpen(false);
+  }
 
   return (
     <div className="flex h-screen ">
@@ -42,7 +52,8 @@ const UserLayout = ({ children }) => {
           <div className="w-full rounded-lg shadow-lg md:w-1/2 h-48 mb-4 text-center hover:bg-slate-50 hover:shadow-xl bg-slate-100 flex flex-col justify-center items-center">
             <h2 className="m-8 lg:text-2xl md:text-xl sm:text-lg font-semibold">My Profile</h2>
             <button
-              className="bg-indigo-900 text-white hover:bg-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg">
+              className="bg-indigo-900 text-white hover:bg-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
+              onClick={openProfile}>
               View Profile
             </button>
           </div>
@@ -55,18 +66,19 @@ const UserLayout = ({ children }) => {
           </div>
         </div>
         <div className="flex flex-col sm:flex-row h-auto p-4 w-[95%] m-auto mb-10 md:flex-row md:gap-8 sm:gap-4">
-        <div className="w-full rounded-lg md:w-1/2 h-48 mb-4 text-center flex flex-col justify-top items-center">
-            <h2 className="m-8 lg:text-2xl md:text-xl sm:text-lg font-semibold">Approved Bookings</h2>
+        <div className="w-full rounded-lg md:w-1/2 h-48 mb-4 text-center flex flex-col border-2 border-indigo-900 hover:bg-indigo-800 hover:text-white justify-top items-center">
+            <h2 className="m-8 lg:text-3xl md:text-2xl sm:text-lg font-semibold">Approved Bookings</h2>
             <h2 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-lg font-semibold">5</h2>
           </div>
-          <div className="w-full rounded-lg md:w-1/2 h-48 mb-4 text-center flex flex-col justify-top items-center">
-            <h2 className="m-8 lg:text-2xl md:text-xl  sm:text-lg font-semibold">Pending Bookings</h2>
+          <div className="w-full rounded-lg md:w-1/2 h-48 mb-4 text-center flex flex-col border-2 border-indigo-900 hover:bg-indigo-800 hover:text-white justify-top items-center">
+            <h2 className="m-8 lg:text-3xl md:text-2xl  sm:text-lg font-semibold">Pending Bookings</h2>
             <h2 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-xl font-semibold">5</h2>
           </div>
         </div>
       </main>
       {/* VenueForm Modal */}
       {isFormOpen && <VenueForm isOpen={isFormOpen} onClose={closeForm} />}
+      {isProfileOpen && <Userprofile isOpen={isProfileOpen} onClose={closeProfile}/>}
     </div>
   );
 };

@@ -2,19 +2,13 @@ import React from 'react';
 
 const VenueForm = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
-
   
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission
-    console.log('Form submitted!'); // Dummy action
-    onClose(); // Optionally close the form
-  };
 
   return (
-    <div className="fixed inset-0 backdrop-blur-sm bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 p-8  overflow-auto backdrop-blur-sm bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white sm:p-6 p-4 lg:p-8 rounded-lg shadow-lg w-full max-w-lg ">
         <h2 className="text-2xl font-bold text-center mb-4">Venue Booking Form</h2>
-        <form onSubmit={handleSubmit} >
+        <form>
             
           <div className="mb-4">
             <label htmlFor="venueName" className="block text-sm font-medium text-gray-700">Venue Name</label>
