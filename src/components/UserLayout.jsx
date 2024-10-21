@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import VenueForm from './VenueForm'; // Import the VenueForm component
 import UserSidebar from './UserSideBar';
 import Userprofile from './Userprofile';
+import { useNavigate } from 'react-router-dom';
 
 const UserLayout = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const navigate = useNavigate();
 
   const openForm = () => {
     setIsFormOpen(true);  
@@ -61,7 +63,7 @@ const UserLayout = () => {
           <div className="group w-full rounded-lg shadow-lg hover:shadow-indigo-900 md:w-1/2 h-48 mb-4 text-center hover:bg-indigo-800 hover:text-white hover:shadow-xl bg-white flex flex-col justify-center items-center">
             <h2 className="m-8 lg:text-2xl md:text-xl sm:text-lg font-semibold">My Bookings</h2>
             <button
-              className="bg-indigo-800 text-white group-hover:bg-white group-hover:text-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
+              onClick={()=>navigate("/user-bookings")} className="bg-indigo-800 text-white group-hover:bg-white group-hover:text-indigo-800 md:text-sm md:w-24 lg:w-24 hover:shadow-lg h-12 w-24 mb-8 rounded-lg"
             >
               Bookings
             </button>
@@ -76,6 +78,11 @@ const UserLayout = () => {
             <h2 className="m-8 lg:text-3xl md:text-2xl  sm:text-lg font-semibold">Pending Bookings</h2>
             <h2 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-xl font-semibold">5</h2>
           </div>
+        </div>
+        <div className="flex-wrap text-gray-500 text-lg text-center">
+          <h1>- - - NOTE - - -</h1>
+          <p className="p-4">Note that when you are booking the venue only available venues will be shown  in the booking form non available venues will not be shown,the not shown venues are either booked by other users or it might be under constructions or some other reason</p>
+          <p className="p-2">- - - The availability of the venues is managed by this portals ADMIN - - -</p>
         </div>
       </main>
       {/* VenueForm Modal */}

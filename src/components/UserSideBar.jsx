@@ -104,14 +104,6 @@ function UserSidebar() {
             </li>
           </ul>
           <ul>
-            <li className="relative">
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-tabs"><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M15 2v20"/><path d="M15 7h5"/><path d="M15 12h5"/><path d="M15 17h5"/></svg>
-                <span className="ms-3">Venue Details</span>
-              </button>
-            </li>
-          </ul>
-          <ul>
             <li>
               <button onClick={()=>navigate("/user-approved-list")} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>

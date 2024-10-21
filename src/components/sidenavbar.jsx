@@ -61,7 +61,7 @@ function Sidebar() {
             <path d="m6 6 12 12" />
           </svg>
         </button>
-        <div className="h-full bg-white   py-4  px-3 overflow-y-auto">
+        <div className="h-full bg-white shadow-gray-400 shadow-lg py-4  px-3 overflow-y-auto">
           <div className="h-12 w-1/4  mx-24 ">
             <img className="object-contain" src="src\images\BIT LOGO.png"></img>
           </div>

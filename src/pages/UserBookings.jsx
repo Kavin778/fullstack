@@ -1,7 +1,7 @@
 import React from "react";
 import UserSidebar from "../components/UserSideBar";
 
-const UserApprovedList = () => {
+const UserBookings =()=>{
     const bookings = [
         {
             venueName: "BIT AUDITORIUM",
@@ -10,30 +10,34 @@ const UserApprovedList = () => {
             fromTime: "10:00",
             toTime: "12:00",
             reason: "Workshop",
+            status: "Pending",
         },
         {
-            venueName: "VEDANAYAGAM AUDITORIUM",
+            venueName: "EEE DEPARTMENT",
             fromDate: "2024-10-15",
             toDate: "2024-10-16",
             fromTime: "14:00",
             toTime: "16:00",
             reason: "Seminar",
+            status: "Approved",
         },
         {
-            venueName: "LIB CONFERENCE ROOM",
+            venueName: "CIVIL ENGINEERING LAB",
             fromDate: "2024-10-29",
             toDate: "2024-10-30",
             fromTime: "09:00",
             toTime: "11:00",
             reason: "Meeting",
+            status: "Rejected",
         },
         {
-            venueName: "BIT AUDITORIUM",
+            venueName: "MECHANICAL ENGINEERING HALL",
             fromDate: "2024-11-12",
             toDate: "2024-11-13",
             fromTime: "13:00",
             toTime: "15:00",
             reason: "Cultural Event",
+            status: "Pending",
         },
         {
             venueName: "VEDANAYAGAM AUDITORIUM",
@@ -42,46 +46,7 @@ const UserApprovedList = () => {
             fromTime: "15:00",
             toTime: "17:00",
             reason: "Guest Lecture",
-        },
-        {
-            venueName: "LIB CONFERENCE ROOM",
-            fromDate: "2024-12-10",
-            toDate: "2024-12-11",
-            fromTime: "11:00",
-            toTime: "13:00",
-            reason: "Department Meeting",
-        },
-        {
-            venueName: "BIT AUDITORIUM",
-            fromDate: "2024-12-24",
-            toDate: "2024-12-25",
-            fromTime: "09:00",
-            toTime: "11:00",
-            reason: "Christmas Celebration",
-        },
-        {
-            venueName: "VEDANAYAGAM AUDITORIUM",
-            fromDate: "2025-01-07",
-            toDate: "2025-01-08",
-            fromTime: "14:00",
-            toTime: "16:00",
-            reason: "New Year Party",
-        },
-        {
-            venueName: "LIB CONFERENCE ROOM",
-            fromDate: "2025-01-21",
-            toDate: "2025-01-22",
-            fromTime: "09:00",
-            toTime: "11:00",
-            reason: "Team Building",
-        },
-        {
-            venueName: "BIT AUDITORIUM",
-            fromDate: "2025-02-04",
-            toDate: "2025-02-05",
-            fromTime: "13:00",
-            toTime: "15:00",
-            reason: "Annual Conference",
+            status: "Approved",
         },
     ];
 
@@ -101,14 +66,14 @@ const UserApprovedList = () => {
                     </h2>
                 </div>
                 <div className="h-10 text-indigo-600 md:text-2xl text-center">
-                    <h1 className="p-1">- - - Details Of your Approved Bookings - - -</h1>
+                    <h1 className="p-1">- - - Details Of your Bookings - - -</h1>
                 </div>
 
                 <div className="flex flex-wrap justify-center">
                     {bookings.map((booking, index) => (
-                        <div 
-                            key={index} 
-                            className="max-w-xs min-h-[200px] rounded overflow-hidden hover:bg-indigo-800 shadow-xl hover:shadow-indigo-900 hover:text-white shadow-lg bg-white m-4 flex flex-col justify-between"
+                        <div
+                            key={index}
+                            className="max-w-xs min-h-[220px] rounded overflow-hidden hover:bg-indigo-800 hover:shadow-indigo-900 hover:text-white shadow-xl bg-white m-4 flex flex-col justify-between"
                         >
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl mb-2">{booking.venueName}</div>
@@ -117,6 +82,12 @@ const UserApprovedList = () => {
                                 <p className="text-base">From Time: {booking.fromTime}</p>
                                 <p className="text-base">To Time: {booking.toTime}</p>
                                 <p className="text-base">Reason: {booking.reason}</p>
+                                <p className={`text-base font-semibold ${
+                                    booking.status === "Approved" ? "text-green-600" :
+                                    booking.status === "Rejected" ? "text-red-600" : "text-yellow-500"
+                                }`}>
+                                    Status: {booking.status}
+                                </p>
                             </div>
                         </div>
                     ))}
@@ -124,6 +95,7 @@ const UserApprovedList = () => {
             </main>
         </div>
     );
-};
+    
+}
 
-export default UserApprovedList;
+export default UserBookings;

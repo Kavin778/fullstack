@@ -1,23 +1,12 @@
 // Layout.jsx
 import React, { useState } from 'react';
-import Sidebar from './sidenavbar';
-import VenueForm from './VenueForm'; // Import the VenueForm component
+import Sidebar from './sidenavbar'; // Import the VenueForm component
 
-const Layout = ({ children }) => {
-  const [isFormOpen, setIsFormOpen] = useState(false); // State to control form visibility
-
-  const openForm = () => {
-    setIsFormOpen(true);
-  };
-
-  const closeForm = () => {
-    setIsFormOpen(false);
-  };
-
+const AdminLayout = () => {
   return (
     <div className="flex h-screen ">
       <Sidebar />
-      <main className="flex-1 overflow-auto sm:ml-72 lg:ml-72 bg-slate-200">
+      <main className="flex-1 overflow-auto sm:ml-72 lg:ml-72 bg-white">
         <div className="max-w-24 md:w-24 lg:w-24 m-auto mt-4">
           <img className="object-contain" src="src/images/BIT LOGO.png" alt="BIT Logo" />
         </div>
@@ -29,11 +18,11 @@ const Layout = ({ children }) => {
             RESOURCE BOOKING PORTAL
           </h2>
         </div>
+        
       </main>
       {/* VenueForm Modal */}
-      {isFormOpen && <VenueForm isOpen={isFormOpen} onClose={closeForm} />}
     </div>
   );
 };
 
-export default Layout;
+export default AdminLayout;

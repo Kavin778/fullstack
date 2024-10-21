@@ -7,6 +7,7 @@ import Adminhome from './pages/Adminhome';
 import Userhome from './pages/Userhome';
 import UserApprovedList from './pages/UserAprrovedList';
 import UserPendingList from './pages/UserPendingList';
+import UserBookings from './pages/UserBookings';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/userhome" element={<Userhome />} />
           <Route path="/user-approved-list" element={<UserApprovedList/>}/>
           <Route path="/user-pending-list" element={<UserPendingList/>}/>
+          <Route path="/user-bookings" element={<UserBookings/>}/>
         </Routes>
       </Router>
     </div>
