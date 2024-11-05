@@ -108,7 +108,7 @@ const UserApprovedList = () => {
                     {bookings.map((booking, index) => (
                         <div 
                             key={index} 
-                            className="max-w-xs min-h-[200px] rounded overflow-hidden hover:bg-indigo-800 shadow-xl hover:shadow-indigo-900 hover:text-white shadow-lg bg-white m-4 flex flex-col justify-between"
+                            className="max-w-xs min-h-[200px] rounded overflow-hidden hover:bg-indigo-800 shadow-xl hover:shadow-indigo-900 hover:text-white bg-white m-4 flex flex-col justify-between"
                         >
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl mb-2">{booking.venueName}</div>
