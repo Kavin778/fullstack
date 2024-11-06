@@ -1,12 +1,21 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
+import About from './About';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
   const [open, setOpen] = useState(false);
+  const [aboutopen, setAboutOpen] = useState(false);
+  const navigate  = useNavigate();
+
+  const openAbout=()=>{
+    setAboutOpen(true);
+  }
+  const closeAbout=()=>{
+    setAboutOpen(false);
+  }
 
   return (
     <>
-      {/* Sidebar Toggle Button */}
       <button
         className="inline-flex items-center w-10 hover:shadow-lg text-sm text-gray-500 sm:hidden  hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         onClick={() => setOpen(!open)}
@@ -73,7 +82,7 @@ function Sidebar() {
           <hr className="border-indigo-900 border-t-2 w-full mb-4"></hr>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold text-lg items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white hover:bg-indigo-800 hover:text-white">
+              <button onClick={() => navigate('/adminhome')} className="flex mb-2 font-sans font-semibold text-lg items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -141,7 +150,7 @@ function Sidebar() {
           </ul>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={() => navigate('/admin')} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -164,7 +173,7 @@ function Sidebar() {
           </ul>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={openAbout} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -187,6 +196,7 @@ function Sidebar() {
           </ul>
         </div>
       </aside>
+      {aboutopen && <About isOpen={aboutopen} onClose={closeAbout}/>}
     </>
   );
 }
