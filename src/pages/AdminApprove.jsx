@@ -35,7 +35,6 @@ const bookingRequests = [
       toTime: "05:00 PM",
       reason: "Annual Meetup",
   },
-    // Add more booking requests as needed
 ];
 
 const AdminApprove = () => {

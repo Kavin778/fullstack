@@ -1,6 +1,6 @@
 // Layout.jsx
 import React, { useState } from 'react';
-import VenueForm from './VenueForm'; // Import the VenueForm component
+import VenueForm from './VenueForm';
 import UserSidebar from './UserSideBar';
 import Userprofile from './Userprofile';
 import { useNavigate } from 'react-router-dom';

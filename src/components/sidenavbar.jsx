@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import About from './About';
 import { useNavigate } from 'react-router-dom';
+import UpdateVenueAvailabilityForm from './UpdateVenueAvailabilityForm';
 
 function Sidebar() {
   const [open, setOpen] = useState(false);
   const [aboutopen, setAboutOpen] = useState(false);
+  const [updatevenue,setUpdatevenue] = useState(false);
   const navigate  = useNavigate();
 
   const openAbout=()=>{
@@ -14,6 +16,13 @@ function Sidebar() {
     setAboutOpen(false);
   }
 
+  const UpdateVenueOpen =()=>{
+      setUpdatevenue(true);
+  }
+  
+  const UpdateVenueClose=()=>{
+      setUpdatevenue(false);
+  }
   return (
     <>
       <button
@@ -104,7 +113,7 @@ function Sidebar() {
           </ul>
           <ul>
             <li className="relative">
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={UpdateVenueOpen} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -127,7 +136,7 @@ function Sidebar() {
           </ul>
           <ul>
             <li>
-              <button className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
+              <button onClick={()=>navigate('/admin-history')} className="flex mb-2 font-sans font-semibold items-center hover:shadow-xl p-2 w-full text-gray-900 rounded-lg dark:text-white text-lg hover:bg-indigo-800 hover:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -197,6 +206,7 @@ function Sidebar() {
         </div>
       </aside>
       {aboutopen && <About isOpen={aboutopen} onClose={closeAbout}/>}
+      {updatevenue && <UpdateVenueAvailabilityForm isOpen={updatevenue} onClose={UpdateVenueClose}/>}
     </>
   );
 }

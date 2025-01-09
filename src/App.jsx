@@ -9,6 +9,7 @@ import UserApprovedList from './pages/UserAprrovedList';
 import UserPendingList from './pages/UserPendingList';
 import UserBookings from './pages/UserBookings';
 import AdminApprove from './pages/AdminApprove';
+import AdminHistory from './pages/AdminHistory';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/user-pending-list" element={<UserPendingList/>}/>
           <Route path="/user-bookings" element={<UserBookings/>}/>
           <Route path="/admin-approve" element={<AdminApprove/>}/>
+          <Route path="/admin-history" element={<AdminHistory/>}/>
         </Routes>
       </Router>
     </div>

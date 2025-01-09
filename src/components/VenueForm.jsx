@@ -109,5 +109,4 @@ const VenueForm = ({ isOpen, onClose }) => {
     </div>
   );
 };
-
 export default VenueForm;
