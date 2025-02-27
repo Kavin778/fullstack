@@ -12,4 +12,6 @@ public interface GetBookingService {
 
 
     String verify(Users users);
+
+    UserDTO findByEmail();
 }

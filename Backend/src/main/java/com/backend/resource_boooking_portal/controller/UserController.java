@@ -1,7 +1,9 @@
 package com.backend.resource_boooking_portal.controller;
 
+import com.backend.resource_boooking_portal.dto.BookingRequestDTO;
 import com.backend.resource_boooking_portal.dto.UserDTO;
 import com.backend.resource_boooking_portal.entity.Admin;
+import com.backend.resource_boooking_portal.entity.Bookings;
 import com.backend.resource_boooking_portal.entity.Users;
 import com.backend.resource_boooking_portal.entity.Venues;
 import com.backend.resource_boooking_portal.service.UserService;
@@ -13,6 +15,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/resource")
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
@@ -39,18 +42,49 @@ public class UserController {
 
     }
 
+    @GetMapping("/userprofile")
+    public ResponseEntity<?> getUserProfile(){
+        try {
+            UserDTO userDTO = userService.findByEmail();
+            return ResponseEntity.ok(userDTO);
+        }
+        catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Login to get your profile");
+        }
+    }
+
     @PostMapping("/venues")
     public Venues setVenues(@RequestBody Venues venues){
         venues.setId(0);
         return userService.save(venues);
     }
 
-    @PostMapping("/login")
-    public String login(@RequestBody Users users){
-        return userService.verify(users);
+    @PostMapping("/bookings")
+    public ResponseEntity<?> addBookings(@RequestBody BookingRequestDTO bookingRequestDTO){
+        try{
+            Bookings bookings= userService.save(bookingRequestDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(bookings);
+        }
+        catch (DuplicateFormatFlagsException e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Venue Already Booked");
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
+        }
     }
 
-    @PostMapping("/users")
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Users users){
+        try {
+            String token = userService.verify(users);
+            return ResponseEntity.ok(Map.of("token",token));
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login Failed");
+        }
+    }
+
+    @PostMapping("/addUsers")
     public Users setUsers(@RequestBody Users users){
         users.setId(0);
         Users theUsers = userService.save(users);

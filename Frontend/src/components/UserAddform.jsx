@@ -1,13 +1,40 @@
+import axios from "axios";
 import React from "react";
 
 const UserAddform = ({isOpen,onClose})=>{
     if(!isOpen)return null;
+    
+    const handleSubmit = async(e) =>{
+      e.preventDefault();
+
+      const formData = {
+        email:e.target.email.value,
+        department:e.target.department.value,
+        password:e.target.password.value,
+        username:e.target.name.value
+      };
+      const token = localStorage.getItem("token");
+
+      try{
+        const response = await axios.post("http://localhost:8080/resource/addUsers",formData,{
+          headers:{
+            Authorization:`Bearer ${token}`,
+            "Content-Type": "application/json",
+          }
+        });
+        console.log(response.data);
+        onClose();
+      }
+      catch(error){
+        console.error(error);
+      }
+    }
 
     return(
         <div className="fixed inset-0 p-8 overflow-auto backdrop-blur-sm bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white sm:p-6 p-4 lg:p-8 rounded-lg shadow-lg w-full max-w-lg">
           <h2 className="text-2xl font-bold text-center mb-4">Add User</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                 Name
