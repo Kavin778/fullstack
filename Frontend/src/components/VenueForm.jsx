@@ -18,33 +18,12 @@ const VenueForm = ({ isOpen, onClose }) => {
               required 
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
               >
-              <option value="">Select Venue</option>
               <option value="Venue1">BIT AUDITORIUM</option>
               <option value="Venue2">VEDANAYAGAM AUDITORIUM</option>
               <option value="Venue3">LIB CONFERENCE ROOM</option>
             </select>
           </div>
           <div className="flex mb-4 gap-2 flex-col md:flex-row md:w-full">
-          <div className="md:w-1/2">
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700">From Date</label>
-            <input 
-              type="date" 
-              id="date" 
-              name="date" 
-              required 
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" 
-            />
-          </div>
-          <div className="md:w-1/2">
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700">To Date</label>
-            <input 
-              type="date" 
-              id="date" 
-              name="date" 
-              required 
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" 
-            />
-          </div>
           </div>
           <div className="flex gap-2 flex-col md:flex-row">
           <div className="mb-4 md:w-1/2">
