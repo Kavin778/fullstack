@@ -11,12 +11,13 @@ const Userloginpage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/resource/login",
+      const response = await axios.post("http://localhost:8080/users/login",
         {email,password},
       )
       if (response.data?.token) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("email", response.data.email);
+        console.log(token);
         navigate("/userhome");
       } else {
         console.error("Login failed: No token received!");
