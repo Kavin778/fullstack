@@ -5,6 +5,8 @@ import com.backend.resource_boooking_portal.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VenueService {
 
@@ -16,6 +18,12 @@ public class VenueService {
 
     public Venues addVenues(Venues venues) {
         return venueRepository.save(venues);
+    }
+
+    public List<Venues> getAvailVenues(){
+        List<Venues> venues = venueRepository.findAll();
+
+        
     }
 
 }

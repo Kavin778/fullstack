@@ -9,6 +9,7 @@ import UserApprovedList from './pages/UserAprrovedList';
 import UserPendingList from './pages/UserPendingList';
 import UserBookings from './pages/UserBookings';
 import AdminApprove from './pages/AdminApprove';
+import PrivateRoute from './pages/PrivateRoute';
 import AdminHistory from './pages/AdminHistory';
 
 function App() {
@@ -19,13 +20,15 @@ function App() {
           <Route path="/" element={<Landingpage />} />
           <Route path="/admin" element={<Adminloginpage />} />
           <Route path="/user" element={<Userloginpage />} />
-          <Route path="/adminhome" element={<Adminhome />} />
-          <Route path="/userhome" element={<Userhome />} />
-          <Route path="/user-approved-list" element={<UserApprovedList/>}/>
-          <Route path="/user-pending-list" element={<UserPendingList/>}/>
-          <Route path="/user-bookings" element={<UserBookings/>}/>
-          <Route path="/admin-approve" element={<AdminApprove/>}/>
-          <Route path="/admin-history" element={<AdminHistory/>}/>
+
+          {/*Protected Routes */}
+          <Route path="/adminhome" element={<PrivateRoute><Adminhome /></PrivateRoute>} />
+          <Route path="/userhome" element={<PrivateRoute><Userhome /></PrivateRoute>} />
+          <Route path="/user-approved-list" element={<PrivateRoute><UserApprovedList /></PrivateRoute>} />
+          <Route path="/user-pending-list" element={<PrivateRoute><UserPendingList /></PrivateRoute>} />
+          <Route path="/user-bookings" element={<PrivateRoute><UserBookings /></PrivateRoute>} />
+          <Route path="/admin-approve" element={<PrivateRoute><AdminApprove /></PrivateRoute>} />
+          <Route path="/admin-history" element={<PrivateRoute><AdminHistory /></PrivateRoute>} />
         </Routes>
       </Router>
     </div>
