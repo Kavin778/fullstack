@@ -19,33 +19,18 @@ const VenueForm = ({ isOpen, onClose }) => {
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
               >
               <option value="Venue1">BIT AUDITORIUM</option>
-              <option value="Venue2">VEDANAYAGAM AUDITORIUM</option>
-              <option value="Venue3">LIB CONFERENCE ROOM</option>
             </select>
           </div>
-          <div className="flex mb-4 gap-2 flex-col md:flex-row md:w-full">
-          </div>
-          <div className="flex gap-2 flex-col md:flex-row">
-          <div className="mb-4 md:w-1/2">
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700">From Time</label>
-            <input 
-              type="time" 
-              id="time" 
-              name="time" 
+          <div className="mb-4">
+            <label htmlFor="venueName" className="block text-sm font-medium text-gray-700">Venue Name</label>
+              <select 
+              id="venueName" 
+              name="venueName" 
               required 
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" 
-            />
-          </div>
-          <div className="mb-4 md:w-1/2">
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700">To Time</label>
-            <input 
-              type="time" 
-              id="time" 
-              name="time" 
-              required 
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-800 focus:border-indigo-800 p-2" 
-            />
-          </div>
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+              >
+              <option value="Venue1">BIT AUDITORIUM</option>
+            </select>
           </div>
           <div className="mb-4">
             <label htmlFor="reason" className="block text-sm font-medium text-gray-700">Reason</label>
@@ -56,16 +41,6 @@ const VenueForm = ({ isOpen, onClose }) => {
             placeholder="Please enter the reason for Booking..."
             required
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" 
-            />
-          </div>
-          <div className="mb-4">
-          <label htmlFor="file" className="block text-sm font-medium text-gray-700">Upload File </label>
-          <input 
-              type="file" 
-              id="file" 
-              name="file"
-              accept=".pdf" 
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             />
           </div>
           <div className="flex justify-center">

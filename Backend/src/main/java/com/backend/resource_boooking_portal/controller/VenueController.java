@@ -32,7 +32,12 @@ public class VenueController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Venue with id " + venues.getId()+ " is created");
     }
 
-    @GetMapping
+    @GetMapping("/getAvailVenues")
+    public ResponseEntity<?> getVenues(){
+        return ResponseEntity.status(HttpStatus.OK).body(venueService.getAvailVenues());
+    }
+
+    @GetMapping("/timeframes")
     public List<TimeFrame> getTimes(){
         return timeService.getTimeFrames();
     }

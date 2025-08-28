@@ -24,7 +24,7 @@ public class BookingController {
     public ResponseEntity<?> addBooking(@RequestBody BookingRequestDTO bookingRequestDTO){
         Bookings bookings = bookingService.addBookings(bookingRequestDTO);
         if(bookings == null)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occured while saving");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occurred while saving");
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Booked " + bookings.getId()+" venue successfully");
     }
