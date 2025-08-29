@@ -11,7 +11,8 @@ import org.w3c.dom.Text;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingRequestDTO {
-    private String venueName;
-    private String timeFrame;
+    private int venuesId;
+    private int timeFrameId;
+    private String email;
     private String reason;
 }

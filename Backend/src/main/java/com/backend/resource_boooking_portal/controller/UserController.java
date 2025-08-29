@@ -46,4 +46,10 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(Map.of("token",token));
     }
+
+    @GetMapping("/userProfile")
+    public ResponseEntity<?> getUserProfile(@RequestParam("email") String email){
+        Users users = userService.getUserByEmail(email);
+        return ResponseEntity.status(HttpStatus.OK).body(users);
+    }
 }

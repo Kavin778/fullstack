@@ -26,7 +26,7 @@ public class VenueController {
     }
 
 
-    @PostMapping
+    @PostMapping("/addVenues")
     public ResponseEntity<?> addVenues(@RequestBody @Valid Venues venues){
         venueService.addVenues(venues);
         return ResponseEntity.status(HttpStatus.CREATED).body("Venue with id " + venues.getId()+ " is created");

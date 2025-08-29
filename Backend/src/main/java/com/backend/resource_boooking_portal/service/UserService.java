@@ -35,6 +35,10 @@ public class UserService {
         return userRepository.findByEmail(users.getEmail());
     }
 
+    public Users getUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
     public String verify(Users users){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(users.getEmail(),users.getPassword()));
         if(authentication.isAuthenticated()){

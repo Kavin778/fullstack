@@ -20,9 +20,8 @@ public class VenueService {
         return venueRepository.save(venues);
     }
 
-    public List<?> getAvailVenues(){
+    public List<Venues> getAvailVenues() {
         List<Venues> venues1 = venueRepository.findByAvailabilityTrue();
         return venues1;
     }
-
 }

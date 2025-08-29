@@ -19,7 +19,6 @@ public class TimeService {
 
     public List<TimeFrame> getTimeFrames(){
         List<TimeFrame> timeFrames = timeFrameRepository.findAll();
-        System.out.println(timeFrames);
         return timeFrames;
     }
 

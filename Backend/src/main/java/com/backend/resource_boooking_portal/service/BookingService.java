@@ -1,6 +1,7 @@
 package com.backend.resource_boooking_portal.service;
 
 import com.backend.resource_boooking_portal.dto.BookingRequestDTO;
+import com.backend.resource_boooking_portal.exceptions.ResourceNotFoundException;
 import com.backend.resource_boooking_portal.model.Bookings;
 import com.backend.resource_boooking_portal.model.TimeFrame;
 import com.backend.resource_boooking_portal.model.Users;
@@ -35,16 +36,18 @@ public class BookingService {
     }
 
     public Bookings addBookings(BookingRequestDTO bookingRequestDTO){
-        Venues venues = venueRepository.findByName(bookingRequestDTO.getVenueName());
-        Optional<Users> users = userRepository.findById(1);
-        TimeFrame timeFrame = timeFrameRepository.findByTimeRange(bookingRequestDTO.getTimeFrame());
+        Venues venues = venueRepository.findById(bookingRequestDTO.getVenuesId()).orElseThrow(() -> new ResourceNotFoundException("Venues not found"));
+        Users users = userRepository.findByEmail(bookingRequestDTO.getEmail());
+        TimeFrame timeFrame = timeFrameRepository.findById(bookingRequestDTO.getTimeFrameId()).orElseThrow(() -> new ResourceNotFoundException("Timeframe not found"));
 
-        if(users.isEmpty())return null;
+        if(users == null){
+            throw new ResourceNotFoundException("Users not found");
+        };
         boolean isAlreadyBoooked = bookingRepository.existsByVenuesAndTimeFrame(venues,timeFrame);
         
         if(isAlreadyBoooked)return null;
         Bookings bookings = new Bookings();
-        bookings.setUsers(users.get());
+        bookings.setUsers(users);
         bookings.setVenues(venues);
         bookings.setTimeFrame(timeFrame);
         bookings.setBooked_date(LocalDate.now());

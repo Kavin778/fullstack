@@ -12,14 +12,14 @@ const Userprofile = ({ isOpen, onClose }) => {
     setLoading(true);
 
     const token = localStorage.getItem("token");
-    console.log(token);
+    const email = localStorage.getItem("email");
     if (!token) {
       console.log("No token found, redirecting to login...");
       setError(true);
       setLoading(false);
       return;
     }
-    axios.get("http://localhost:8080/resource/userprofile",{
+    axios.get(`http://localhost:8080/users/userProfile?email=${email}`,{
         headers:{
             Authorization: `Bearer ${token}`,
         },
@@ -50,7 +50,7 @@ const Userprofile = ({ isOpen, onClose }) => {
                 <p className="mt-2 text-gray-500 hover:text-indigo-900">Name: {profile.username}</p>
                 <p className="mt-2 text-gray-500 hover:text-indigo-900">Department: {profile.department}</p>
                 <p className="mt-2 text-gray-500 hover:text-indigo-900">Email: {profile.email}</p>
-                <p className="mt-2 text-gray-500 hover:text-indigo-900">Student at Bannari Amman Institute of Technology</p>
+                <p className="mt-2 text-gray-500 hover:text-indigo-900">{profile.roles} at Bannari Amman Institute of Technology</p>
               </>
             )}
             <button className="mt-4 bg-indigo-800 text-white px-4 py-2 rounded hover:bg-indigo-950" onClick={onClose}>

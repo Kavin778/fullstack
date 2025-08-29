@@ -16,9 +16,9 @@ const Userloginpage = () => {
       )
       if (response.data?.token) {
         const token = response.data.token;
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("email", response.data.email);
-        console.log(token);
+        
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('email', email);
         navigate("/userhome");
       } else {
         console.error("Login failed: No token received!");
