@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,4 +59,37 @@ public class BookingService {
 
         return  bookingRepository.save(bookings);
     }
+
+    public List<Bookings> getApprovedBookings(String email){
+        Users users = userRepository.findByEmail(email);
+        List<Bookings> bookings = bookingRepository.findByUsers(users);
+        List<Bookings> bookingsList = new ArrayList<>();
+        for(Bookings booking : bookings){
+            if(booking.getStatus().equals("APPROVED")){
+                bookingsList.add(booking);
+            }
+
+        }
+        return bookingsList;
+    }
+
+    public List<Bookings> getPendingBookings(String email){
+        Users users = userRepository.findByEmail(email);
+        List<Bookings> bookings = bookingRepository.findByUsers(users);
+        List<Bookings> bookingsList = new ArrayList<>();
+        for(Bookings booking : bookings){
+            if(booking.getStatus().equals("PENDING")){
+                bookingsList.add(booking);
+            }
+
+        }
+        return bookingsList;
+    }
+
+    public List<Bookings> getAllBookings(String email){
+        Users users = userRepository.findByEmail(email);
+        List<Bookings> bookings = bookingRepository.findByUsers(users);
+        return bookings;
+    }
+
 }

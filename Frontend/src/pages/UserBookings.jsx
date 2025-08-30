@@ -1,55 +1,35 @@
 import React from "react";
 import UserSidebar from "../components/UserSideBar";
+import { useState,useEffect } from "react";
+import axios from "axios";  
 
 const UserBookings =()=>{
-    const bookings = [
-        {
-            venueName: "BIT AUDITORIUM",
-            fromDate: "2024-10-01",
-            toDate: "2024-10-02",
-            fromTime: "10:00",
-            toTime: "12:00",
-            reason: "Workshop",
-            status: "Pending",
-        },
-        {
-            venueName: "EEE DEPARTMENT",
-            fromDate: "2024-10-15",
-            toDate: "2024-10-16",
-            fromTime: "14:00",
-            toTime: "16:00",
-            reason: "Seminar",
-            status: "Approved",
-        },
-        {
-            venueName: "CIVIL ENGINEERING LAB",
-            fromDate: "2024-10-29",
-            toDate: "2024-10-30",
-            fromTime: "09:00",
-            toTime: "11:00",
-            reason: "Meeting",
-            status: "Rejected",
-        },
-        {
-            venueName: "MECHANICAL ENGINEERING HALL",
-            fromDate: "2024-11-12",
-            toDate: "2024-11-13",
-            fromTime: "13:00",
-            toTime: "15:00",
-            reason: "Cultural Event",
-            status: "Pending",
-        },
-        {
-            venueName: "VEDANAYAGAM AUDITORIUM",
-            fromDate: "2024-11-26",
-            toDate: "2024-11-27",
-            fromTime: "15:00",
-            toTime: "17:00",
-            reason: "Guest Lecture",
-            status: "Approved",
-        },
-    ];
+    const[bookings,setBookings] = useState([]);
+    const email = localStorage.getItem("email");
+    useEffect(()=>{
+        const fetchApprovedBookings= async()=>{
+            const api = `http://localhost:8080/booking/getAllBookings?email=${email}`;
+            try{
+                const token = localStorage.getItem("token");
+                if (!token) {
+                console.error("Authentication error: You must be logged in to see booking options.");
+                return;
+                }
+                const configs = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+                };
+                const response = await axios.get(api,configs);
 
+                setBookings(response.data);
+            }
+            catch(err){
+                console.error("an errror occured")
+            }
+        } 
+        fetchApprovedBookings();  
+    },[])
     return (
         <div className="flex h-screen">
             <UserSidebar />
@@ -77,14 +57,14 @@ const UserBookings =()=>{
                         >
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl mb-2">{booking.venueName}</div>
-                                <p className="text-base">From Date: {booking.fromDate}</p>
-                                <p className="text-base">To Date: {booking.toDate}</p>
-                                <p className="text-base">From Time: {booking.fromTime}</p>
-                                <p className="text-base">To Time: {booking.toTime}</p>
+                                <div className="font-bold text-xl">{booking.venues.name}</div>
+                                <p className="text-base">Booked Date: {booking.booked_date}</p>
+                                <p className="text-base">Booked Time: {booking.booked_time.slice(0,5)}</p>
+                                <p className="text-base">Timing: {booking.timeFrame.timeRange}</p>
                                 <p className="text-base">Reason: {booking.reason}</p>
                                 <p className={`text-base font-semibold ${
-                                    booking.status === "Approved" ? "text-green-600" :
-                                    booking.status === "Rejected" ? "text-red-600" : "text-yellow-500"
+                                    booking.status === "APPROVED" ? "text-green-600" :
+                                    booking.status === "REJECTED" ? "text-red-600" : "text-yellow-500"
                                 }`}>
                                     Status: {booking.status}
                                 </p>

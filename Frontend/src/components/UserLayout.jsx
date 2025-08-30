@@ -1,9 +1,10 @@
 // Layout.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import VenueForm from './VenueForm';
 import UserSidebar from './UserSideBar';
 import Userprofile from './Userprofile';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const UserLayout = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -25,6 +26,43 @@ const UserLayout = () => {
   const closeProfile =()=>{
     setIsProfileOpen(false);
   }
+  const [approvedBookings, setApprovedBookings] = useState([]);
+  const [pendingBookings, setPendingBookings] = useState([]);
+  useEffect(() => {
+    const fetchAllBookings = async () => {
+      const email = localStorage.getItem("email");
+      const token = localStorage.getItem("token");
+
+      if (!token || !email) {
+        console.error("Authentication error: Missing token or email.");
+        return;
+      }
+
+      const configs = {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      };
+
+      const approvedApi = `http://localhost:8080/booking/getApprovedBookings?email=${email}`;
+      const pendingApi = `http://localhost:8080/booking/getPendingBookings?email=${email}`;
+
+      try {
+        const [approvedResponse, pendingResponse] = await Promise.all([
+          axios.get(approvedApi, configs),
+          axios.get(pendingApi, configs)
+        ]);
+
+        setApprovedBookings(approvedResponse.data);
+        setPendingBookings(pendingResponse.data);
+
+      } catch (err) {
+        console.error("An error occurred while fetching bookings:", err);
+      }
+    };
+
+    fetchAllBookings();
+  }, []);
 
   return (
     <div className="flex h-screen ">
@@ -72,11 +110,11 @@ const UserLayout = () => {
         <div className="flex flex-col sm:flex-row h-auto p-4 w-[95%] m-auto mb-10 md:flex-row md:gap-8 sm:gap-4">
         <div className="w-full rounded-lg md:w-1/2 h-48 mb-4 text-center flex flex-col border-2 border-indigo-900 hover:bg-indigo-800 hover:text-white justify-top items-center">
             <h2 className="m-8 lg:text-3xl md:text-2xl sm:text-lg font-semibold">Approved Bookings</h2>
-            <h2 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-lg font-semibold">5</h2>
+            <h2 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-lg font-semibold">{approvedBookings.length}</h2>
           </div>
           <div className="w-full rounded-lg md:w-1/2 h-48 mb-4 text-center flex flex-col border-2 border-indigo-900 hover:bg-indigo-800 hover:text-white justify-top items-center">
             <h2 className="m-8 lg:text-3xl md:text-2xl  sm:text-lg font-semibold">Pending Bookings</h2>
-            <h2 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-xl font-semibold">5</h2>
+            <h2 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-xl font-semibold">{pendingBookings.length}</h2>
           </div>
         </div>
         <div className="flex-wrap text-gray-500 text-lg text-center">

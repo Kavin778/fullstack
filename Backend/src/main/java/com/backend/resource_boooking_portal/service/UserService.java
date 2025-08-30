@@ -31,7 +31,6 @@ public class UserService {
     }
 
     public Users getUser(Users users){
-        System.out.println(users.getEmail());
         return userRepository.findByEmail(users.getEmail());
     }
 
